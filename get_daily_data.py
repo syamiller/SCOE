@@ -13,6 +13,9 @@ def get_data():
     # get saved data
     from_csv = pd.read_csv('data/shadow_zone_data_2022.csv')
 
+    # get player teams
+    player_teams = pd.read_csv('data/player_team_ids.csv')
+
     # load model
     cl = pickle.load(open('SCOE_model.sav', 'rb'))
 
@@ -36,11 +39,20 @@ def get_data():
     data = data.merge(players[['key_mlbam', 'full_name']], left_on='batter', right_on='key_mlbam')
     data = data.drop(['key_mlbam'], 1)
     data = data.rename(columns={'full_name' : 'batter_name'})
+    data = data.merge(player_teams, left_on='fielder_2', right_on='player_id')
+    data = data.drop(columns=['player_id'], axis=1)
+    data = data.rename(columns={'team_name' : 'catcher_team'})
+    data = data.merge(player_teams, left_on='pitcher', right_on='player_id')
+    data = data.drop(columns=['player_id'], axis=1)
+    data = data.rename(columns={'team_name' : 'pitcher_team'})
+    data = data.merge(player_teams, left_on='batter', right_on='player_id')
+    data = data.drop(columns=['player_id'], axis=1)
+    data = data.rename(columns={'team_name' : 'batter_team'})
 
     X_2022 = data.drop(['pitcher', 'batter', 'fielder_2', 'called_strike', 'sz_top', 'sz_bot', 'catcher_name', 'pitcher_name', 'batter_name'], 1)
     X_2022 = pd.get_dummies(X_2022, columns=['pitch_name', 'balls', 'strikes', 'outs_when_up', 'zone', 'p_throws', 'stand'])
-    X_2022.to_csv('X_2022.csv', index=False)
-    X_2022 = pd.read_csv('X_2022.csv')
+    X_2022.to_csv('data/X_2022.csv', index=False)
+    X_2022 = pd.read_csv('data/X_2022.csv')
 
     diff = 56 - len(X_2022.columns.tolist())
 
