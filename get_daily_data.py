@@ -49,13 +49,14 @@ def get_data():
             col_name = 'add_' + str(i)
             X_2022[col_name] = 0
 
+    # run through model
     y_pred_2022 = cl.predict_proba(X_2022)
     y_pred_2022 = y_pred_2022.tolist()
     y_pred_2022 = [l[1] for l in y_pred_2022]
     data['strike_proba'] = y_pred_2022
 
-    print(data[['called_strike', 'strike_proba']].head(20))
-    data_out = from_csv.append(data, ignore_index=True)
+    # update csv file
+    data_out = pd.concat([from_csv, data], axis=1, ignore_index=True)
     data_out.to_csv('data/shadow_zone_data_2022.csv', index=False)    
 
     logging.info('Yay! - csv data updated ' + str(date.today()))
