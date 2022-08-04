@@ -2,7 +2,7 @@ name: run get_daily_data.py
 
 on:
   schedule:
-    - cron: '7 16 * * *' 
+    - cron: '30 16 * * *' 
 
 jobs:
   build:
