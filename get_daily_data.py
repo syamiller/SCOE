@@ -18,7 +18,7 @@ def get_data():
     player_teams = pd.read_csv('data/player_team_ids.csv')
 
     # load model
-    cl = pickle.load(open('SCOE_model.sav', 'rb'))
+    cl = pickle.load(open('scoe_model.pkl', 'rb'))
 
     # load players data
     players = chadwick_register()
