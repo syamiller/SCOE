@@ -9,8 +9,8 @@ from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
 @st.cache()
 def load_data():
-    data = pd.read_csv('data/shadow_zone_data_2022.csv')
-    logos = pd.read_csv('data/team_logos.csv')
+    data = pd.read_csv('app/data/shadow_zone_data_2022.csv')
+    logos = pd.read_csv('app/data/team_logos.csv')
     return data, logos
 
 data, logos = load_data()
