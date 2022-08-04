@@ -20,7 +20,7 @@ def get_data():
     # load model
     cl = xgb.XGBClassifier()
 
-    cl = cl.load_model('scoe_model.json')
+    cl.load_model('scoe_model.json')
 
     # load players data
     players = chadwick_register()
