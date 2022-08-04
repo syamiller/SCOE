@@ -5,6 +5,7 @@ import numpy as np
 from pybaseball import chadwick_register
 import logging
 from datetime import date
+import xgboost
 
 def get_data():
     # get yesterday's data
@@ -17,7 +18,7 @@ def get_data():
     player_teams = pd.read_csv('data/player_team_ids.csv')
 
     # load model
-    cl = pickle.load(open('SCOE/SCOE_model.sav', 'rb'))
+    cl = pickle.load(open('SCOE_model.sav', 'rb'))
 
     # load players data
     players = chadwick_register()
