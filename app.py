@@ -15,7 +15,6 @@ def load_data():
 
 data, logos = load_data()
 
-
 st.title('Strikes Called Over Expected So Far 2022')
 choice = st.selectbox(
     "Choose a Position",
