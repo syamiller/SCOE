@@ -35,3 +35,4 @@ xgboost==1.6.1
 scikit-learn==1.1.1
 threadpoolctl==2.2.0
 joblib==1.1.0
+streamlit-aggrid==0.3.2
