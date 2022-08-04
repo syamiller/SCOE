@@ -12,10 +12,10 @@ def get_data():
     data = statcast()
 
     # get saved data
-    from_csv = pd.read_csv('data/shadow_zone_data_2022.csv')
+    from_csv = pd.read_csv('app/data/shadow_zone_data_2022.csv')
 
     # get player teams
-    player_teams = pd.read_csv('data/player_team_ids.csv')
+    player_teams = pd.read_csv('app/data/player_team_ids.csv')
 
     # load model
     cl = xgb.XGBClassifier()
@@ -72,7 +72,7 @@ def get_data():
 
     # update csv file
     data_out = pd.concat([from_csv, data], axis=1)
-    data_out.to_csv('data/shadow_zone_data_2022.csv', index=False)    
+    data_out.to_csv('app/data/shadow_zone_data_2022.csv', index=False)    
 
     logging.info('Yay! - csv data updated ' + str(date.today()))
 

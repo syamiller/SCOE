@@ -28,6 +28,7 @@ jobs:
           
       - name: execute py script # run main.py
         run: |
+
           python get_daily_data.py
           
       - name: commit files
