@@ -1,4 +1,4 @@
-name: run get_daily_data.py
+name: run get_daily_data
 
 on:
   schedule:
