@@ -1,6 +1,6 @@
 import pandas as pd
 from pybaseball import statcast
-import pickle
+import xgboost as xgb
 import numpy as np
 from pybaseball import chadwick_register
 import logging
@@ -18,7 +18,9 @@ def get_data():
     player_teams = pd.read_csv('data/player_team_ids.csv')
 
     # load model
-    cl = pickle.load(open('scoe_model.pkl', 'rb'))
+    cl = xgb.XGBClassifier()
+
+    cl = cl.load_model('scoe_model.json')
 
     # load players data
     players = chadwick_register()
