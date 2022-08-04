@@ -11,9 +11,10 @@ from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 @st.cache()
 def load_data():
     data = pd.read_csv('data/shadow_zone_data_2022.csv')
-    return data
+    logos = pd.read_csv('data/team_logos.csv')
+    return data, logos
 
-data = load_data()
+data, logos = load_data()
 
 
 st.title('Strikes Called Over Expected So Far 2022')
@@ -32,23 +33,6 @@ else:
 
 grouped_data = grouped_data[grouped_data['pitch_number'] > 100]
 
-# if choice == 'Catchers':
-#     catchers = grouped_data.name.tolist()
-#     pitchers = []
-#     batters = []
-# elif choice == 'Pitchers':
-#     pitchers = grouped_data.name.tolist()
-#     catchers = []
-#     batters = []
-# else:
-#     batters = grouped_data.name.tolist()
-#     catchers = []
-#     pitchers = []
-
-
-# lookup_dict = {'Catchers' : catchers, 'Pitchers' : pitchers, 'Batters' : batters}
-
-# player_choice = st.selectbox("Choose a Player", lookup_dict[choice])
 
 
 grouped_data['total_strikes_OE'] = grouped_data['called_strike'] - grouped_data['expected_strikes']
@@ -58,7 +42,6 @@ grouped_data['strike_rate_OE'] = grouped_data['strike_rate'] - grouped_data['exp
 grouped_data = grouped_data.sort_values('strike_rate_OE', ascending=False)
 grouped_data['strike_rate_OE'] = grouped_data['strike_rate_OE'] * 100
 grouped_data[['expected_strikes', 'total_strikes_OE', 'strike_rate', 'expected_strike_rate', 'strike_rate_OE']] = grouped_data[['expected_strikes', 'total_strikes_OE', 'strike_rate', 'expected_strike_rate', 'strike_rate_OE']].round(2)
-# st.write(grouped_data.reset_index().drop(['index'], 1).style.background_gradient(subset='strike_rate_OE'))
 gb = GridOptionsBuilder.from_dataframe(grouped_data.drop(columns=['total_strikes_OE', 'strike_rate', 'expected_strike_rate'], axis=1))
 gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
 gb.configure_selection('single', use_checkbox=True)

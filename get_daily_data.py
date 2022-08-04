@@ -71,7 +71,7 @@ def get_data():
     data['strike_proba'] = y_pred_2022
 
     # update csv file
-    data_out = pd.concat([from_csv, data], axis=1, ignore_index=True)
+    data_out = pd.concat([from_csv, data], axis=1)
     data_out.to_csv('data/shadow_zone_data_2022.csv', index=False)    
 
     logging.info('Yay! - csv data updated ' + str(date.today()))
