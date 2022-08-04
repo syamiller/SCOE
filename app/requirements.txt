@@ -51,6 +51,7 @@ parso==0.8.3
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==9.2.0
+plotly==5.9.0
 prometheus-client==0.14.1
 prompt-toolkit==3.0.30
 protobuf==3.20.1
@@ -79,6 +80,7 @@ soupsieve==2.3.2.post1
 stack-data==0.3.0
 streamlit==1.11.1
 streamlit-aggrid==0.3.2
+tenacity==8.0.1
 terminado==0.15.0
 tinycss2==1.1.1
 toml==0.10.2
