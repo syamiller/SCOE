@@ -8,8 +8,9 @@ from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
 
 @st.cache()
+@st.experimental_singleton()
 def load_data():
-    data = pd.read_csv('app/data/shadow_zone_data_2022.csv')
+    data = pd.read_csv('app/data/shadow_zone_data_2022.csv', low_memory=False)
     logos = pd.read_csv('app/data/team_logos.csv')
     return data, logos
 
