@@ -54,8 +54,8 @@ def get_data():
 
     X_2022 = data.drop(['pitcher', 'batter', 'fielder_2', 'called_strike', 'sz_top', 'sz_bot', 'catcher_name', 'pitcher_name', 'batter_name', 'catcher_team', 'pitcher_team', 'batter_team'], 1)
     X_2022 = pd.get_dummies(X_2022, columns=['pitch_name', 'balls', 'strikes', 'outs_when_up', 'zone', 'p_throws', 'stand'])
-    X_2022.to_csv('data/X_2022.csv', index=False)
-    X_2022 = pd.read_csv('data/X_2022.csv')
+    X_2022.to_csv('app/data/X_2022.csv', index=False)
+    X_2022 = pd.read_csv('app/data/X_2022.csv')
 
     diff = 56 - len(X_2022.columns.tolist())
 
